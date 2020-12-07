@@ -1,5 +1,9 @@
 ---
-- name: restart chronyd
-  service:
-    name: chronyd
-    state: restarted
+- name: Restart chrony
+  hosts: all
+
+  tasks:
+  - name: restart chronyd
+    service:
+     name: chronyd
+     state: restarted
