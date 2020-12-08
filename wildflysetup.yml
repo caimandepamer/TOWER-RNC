@@ -1,0 +1,105 @@
+---
+- name: Setup wildfly environment
+  hosts: all
+  vars_files: 
+    - wildfly_vars.yml    
+  tasks:
+    - name: Install java openjdk 11
+      yum:
+        name: java-11-openjdk
+        state: present
+    
+    - name: Download wildfly package
+      get_url:
+        url: "{{ wildfly_url }}"
+        dest: /opt
+        mode: '0660'
+    
+    - name: uncompress wildfly package
+      unarchive:
+        src: "/opt/{{ wildfly_package }}"
+        dest: /opt/
+        remote_src: yes
+
+    - name: Create symbolic link to wildfly directory
+      file: 
+        src: "/opt/wildfly-{{ wildfly_version }}"
+        dest: /opt/wildfly
+        state: link
+
+    - name: Add wildfly group
+      group:
+        name: wildfly
+        state: present
+        system: true
+    
+    - name: Add wildfly user
+      user:
+        name: wildfly
+        shell: /sbin/nologin
+        group: wildfly
+        home: /opt/wildfly
+        system: true
+        state: present
+
+    - name: Change owner and group of wildfly directory
+      file:
+        path: /opt/wildfly
+        state: directory
+        recurse: yes
+        owner: wildfly
+        group: wildfly
+
+    - name: Create /etc/wildfly directory
+      file:
+        path: /etc/wildfly
+        state: directory
+        mode: '0755'
+        owner: wildfly
+        group: wildfly
+
+    - name: Copy wildfly.conf file
+      copy:
+        src: /opt/wildfly/docs/contrib/scripts/systemd/wildfly.conf
+        dest: /etc/wildfly
+        owner: wildfly
+        group: wildfly
+        mode: '0644'
+        remote_src: yes
+
+    - name: Copy wildfly.service file
+      copy:
+        src: /opt/wildfly/docs/contrib/scripts/systemd/wildfly.service
+        dest: /etc/systemd/system
+        owner: wildfly
+        group: wildfly
+        remote_src: yes
+
+    - name: Copy launch.sh file
+      copy:
+        src: /opt/wildfly/docs/contrib/scripts/systemd/launch.sh
+        dest: /opt/wildfly/bin
+        owner: wildfly
+        group: wildfly
+        mode: '0755'
+        remote_src: yes
+    
+    - name: Enable wildfly at boot
+      service:
+        name: wildfly
+        enabled: yes
+
+    - name: Start wildfly services
+      service:
+        name: wildfly
+        state: started
+    
+    - name: firewalld rules
+      firewalld:
+        port: 8080/tcp
+        permanent: yes
+        state: enabled
+        immediate: yes
+    
+        
+
