@@ -6,3 +6,4 @@
         uri:
           url: https://{{ansible_hostname}}/#/login
           status_code: 200
+          validate_certs: no
