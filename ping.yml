@@ -1,0 +1,7 @@
+---
+  - name: Test ansible connectivity
+    hosts: all
+    tasks:
+      - name: ensure login is reachable
+        tasks:
+        - action: ping
