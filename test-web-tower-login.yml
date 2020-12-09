@@ -1,0 +1,4 @@
+    - name: test webpage access
+      uri:
+        url: https://{{ansible_hostname}}/#/login
+        status_code: 200
