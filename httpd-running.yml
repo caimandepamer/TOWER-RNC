@@ -1,0 +1,8 @@
+---
+  - name: start httpd
+    hosts: all
+    tasks:
+      - name: ensure apache is running
+        service:
+          name: httpd
+          state: started
