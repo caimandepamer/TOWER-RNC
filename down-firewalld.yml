@@ -1,4 +1,5 @@
-    - name: firewalld disabled 
+---
+  - name: firewalld disabled 
       service:
         name: firewalld
         enabled: false
