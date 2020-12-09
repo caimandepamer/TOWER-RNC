@@ -3,5 +3,4 @@
     hosts: all
     tasks:
       - name: ensure login is reachable
-        tasks:
-        - action: ping
+        action: ping
