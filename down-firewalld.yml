@@ -1,6 +1,9 @@
 ---
-  - name: firewalld disabled 
-      service:
-        name: firewalld
-        enabled: false
-        state: stoped
+  - name: disable firewalld
+    hosts: all
+    tasks:
+      - name: ensure apache is enabled
+        service:
+          name: firewalld
+          enabled: false
+          state: stoped
