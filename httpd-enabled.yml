@@ -1,0 +1,9 @@
+---
+  - name: enable httpd
+    hosts: all
+    tasks:
+      - name: ensure apache is enabled
+        service:
+          name: httpd
+          enabled: true
+          state: started
