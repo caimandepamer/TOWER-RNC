@@ -1,0 +1,8 @@
+---
+- hosts: curso-reniec
+  become: yes
+  tasks:
+  - name:  Edit /etc/hosts from inventory
+    template:
+      src: hosts.j2
+      dest: /etc/hosts
