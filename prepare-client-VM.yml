@@ -1,0 +1,5 @@
+---
+- include: configure-manager-web-repo.yml
+- include: inject-sshkey.yml
+- include: install-git.yml
+- include: sync-git-repo-reniec.yml

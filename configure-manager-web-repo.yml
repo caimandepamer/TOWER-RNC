@@ -1,0 +1,23 @@
+---
+ - hosts: curso-reniec
+   become: yes
+   become_user: root
+   tasks:
+    - name: Create old dir
+      file:
+       path: /etc/yum.repos.d/old
+       state: directory
+
+    - name: Move REPOS to old dir
+      shell: "mv /etc/yum.repos.d/*.repo /etc/yum.repos.d/old/"
+
+    - name: Add WEB REPO
+      yum_repository:
+       name: Centos7-ManagerRepo
+       description: Base DVD repo - Manager
+       file: base-c7-manager-lab
+       baseurl: http://192.168.122.231:8080
+       gpgcheck: no
+
+    - name: Clean cache
+      shell: "yum clean packages; yum clean headers; yum clean metadata; yum clean all;"

@@ -1,0 +1,2 @@
+[curso-reniec]
+ansiblecos702   ansible_host=192.168.122.102 ansible_user=soporte01 ansible_ssh_pass=Tecsup00  ansible_become_pass=Tecsup00 ansible_sudo_pass=Tecsup00

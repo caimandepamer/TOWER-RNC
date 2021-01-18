@@ -1,0 +1,22 @@
+---
+- hosts: curso-reniec
+  become: no
+  tasks:
+   - name: Configure KEY for GIT
+     blockinfile:
+      path: /home/soporte01/.ssh/config
+      owner: soporte01
+      group: soporte01
+      create: true
+      block: |
+        Host github.com
+         IdentityFile ~/.ssh/id_rsa_reniec
+
+   - name: Sync reniec repo from GIT
+     git:
+       repo: git@github.com:caimandepamer/TOWER-RNC.git
+       dest: /home/soporte01/TOWER-RNC
+       update: yes
+       ssh_opts: "-o StrictHostKeyChecking=no"
+       force: yes
+       clone: yes

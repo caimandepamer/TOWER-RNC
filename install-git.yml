@@ -1,0 +1,10 @@
+---
+- hosts: curso-reniec
+  become: yes
+  become_user: root
+  tasks:
+   - name: Install GIT
+     yum:
+      name: git
+      state: present
+

@@ -1,0 +1,25 @@
+---
+- hosts: curso-reniec
+  become: no
+  tasks: 
+   - name: Set authorized key 
+     authorized_key:
+      user: soporte01
+      state: present
+      key: "{{ lookup('file', '/home/ibmrcampove/.ssh/{{ item }}') }}"
+      manage_dir: yes
+      path: "/home/soporte01/.ssh/{{ item }}"
+     loop: 
+      - id_rsa_reniec.pub
+
+   - name: Copy PRIV key
+     copy:
+      src: "/home/ibmrcampove/.ssh/{{ item }}"
+      dest: "/home/soporte01/.ssh/{{ item }}"
+      owner: soporte01
+      group: soporte01
+      mode: '0600'
+      backup: no
+     loop:
+      - id_rsa_reniec
+
