@@ -1,0 +1,12 @@
+---
+- hosts: "{{ HOST }}"
+  become: yes
+  become_user: root
+  tasks:
+   - name: Set IP
+     nmcli:
+      type: ethernet
+      conn_name: '{{ conn_name }}'
+      ip4: '{{ ip4 }}'
+      gw4: '{{ gw4 }}'
+      state: present

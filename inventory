@@ -1,2 +1,15 @@
 [curso-reniec]
-ansiblecos702   ansible_host=192.168.122.102 ansible_user=soporte01 ansible_ssh_pass=Tecsup00  ansible_become_pass=Tecsup00 ansible_sudo_pass=Tecsup00
+ansiblecos702   ansible_host=192.168.122.102 
+ansiblecos703   ansible_host=192.168.122.103 
+ansiblecos704   ansible_host=192.168.122.104 
+ansiblecos705   ansible_host=192.168.122.105 
+ansiblecos706   ansible_host=192.168.122.106 
+ansiblecos707   ansible_host=192.168.122.107 
+ansiblecos708   ansible_host=192.168.122.108 
+ansiblecos709   ansible_host=192.168.122.109 
+
+[curso-reniec:vars]
+ansible_user=soporte01 
+ansible_ssh_pass=Tecsup00  
+ansible_become_pass=Tecsup00 
+ansible_sudo_pass=Tecsup00
