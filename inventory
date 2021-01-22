@@ -3,6 +3,8 @@ ansiblecos702   ansible_host=192.168.122.102
 ansiblecos703   ansible_host=192.168.122.103 
 ansiblecos704   ansible_host=192.168.122.104 
 ansiblecos705   ansible_host=192.168.122.105 
+
+[curso-reniec-offline]
 ansiblecos706   ansible_host=192.168.122.106 
 ansiblecos707   ansible_host=192.168.122.107 
 ansiblecos708   ansible_host=192.168.122.108 
