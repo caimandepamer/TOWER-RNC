@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  become: yes
+  become_user: root
+  tasks: 
+    - name: Cambiar hostname
+      hostname:
+        name: ansiblecos705.test.local
+...
